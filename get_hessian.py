@@ -6,7 +6,8 @@ import numpy as np
 
 def get_hessian(atoms: Atoms) -> np.ndarray:
     """Calculate the Hessian matrix of an ASE `Atoms` object using a
-    machine learning model specified by `ml_path` and `config_path`.
+    machine learning model specified by `ml_path` and `config_path`
+    as global variables.
     
     Args:
         atoms: An `Atoms` object.
