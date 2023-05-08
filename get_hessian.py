@@ -4,14 +4,12 @@ from ase import Atoms
 import numpy as np
 
 
-def get_hessian(atoms: Atoms, ml_path: str, config_path: str) -> np.ndarray:
+def get_hessian(atoms: Atoms) -> np.ndarray:
     """Calculate the Hessian matrix of an ASE `Atoms` object using a
     machine learning model specified by `ml_path` and `config_path`.
     
     Args:
         atoms: An `Atoms` object.
-        ml_path: Path to the machine learning model.
-        config_path: Path to the configuration file for the machine learning model.
     
     Returns:
         A 2D numpy array representing the Hessian matrix of the `atoms` object.
@@ -25,10 +23,12 @@ def get_hessian(atoms: Atoms, ml_path: str, config_path: str) -> np.ndarray:
     return np.reshape(H, (n_atoms * 3, n_atoms * 3))
 
 
+# Define global variables to provide the ML-funtion and the config file for it
+ml_path = 'inputs/best_model_state.tar'
+config_path = 'inputs/config0.yml'
+
 if __name__ == '__main__':
     atoms = read(f'inputs/irc_r.xyz')
-    ml_path = 'inputs/best_model_state.tar'
-    config_path = 'inputs/config0.yml'
-    hessian = get_hessian(atoms, ml_path, config_path)
+    hessian = get_hessian(atoms)
     print(hessian)
 
